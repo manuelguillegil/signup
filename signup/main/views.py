@@ -32,6 +32,8 @@ def ingresarUsuario(request):
     if form.is_valid():
         email = form.cleaned_data['email']
         password = form.cleaned_data['password1']
+        if password == '':
+            return False
 
     mensaje = ''
     return render(request, 'thanks.html', {'mensaje': mensaje})
