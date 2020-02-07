@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from main.forms import RegistrarUsuarioForm, IngresarUsuarioForm
@@ -19,9 +18,20 @@ def thanks(request):
     return render(request, 'thanks.html', {'user': request})
 
 def registrarUsuario(request):
-    mensaje = 'que mas mi bro'
+    form = RegistrarUsuarioForm(request.POST)
+    if form.is_valid():
+        email = form.cleaned_data['email']
+        password1 = form.cleaned_data['password1']
+        password2 = form.cleaned_data['password2']
+        
+    mensaje = ''
     return render(request, 'thanks.html', {'mensaje': mensaje})
 
 def ingresarUsuario(request):
-    mensaje = 'epa bro'
+    form = IngresarUsuarioForm(request.POST)
+    if form.is_valid():
+        email = form.cleaned_data['email']
+        password = form.cleaned_data['password1']
+
+    mensaje = ''
     return render(request, 'thanks.html', {'mensaje': mensaje})

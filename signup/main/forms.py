@@ -4,8 +4,8 @@ from django.contrib.auth.models import User
 
 class RegistrarUsuarioForm(forms.Form):
     email = forms.CharField(max_length=254, required=True, widget=forms.EmailInput())
-    password1 = forms.CharField(max_length=254, required=True, widget=forms.PasswordInput())
-    password2 = forms.CharField(max_length=254, required=True, widget=forms.PasswordInput())
+    password1 = forms.CharField(max_length=254, required=True)
+    password2 = forms.CharField(max_length=254, required=True)
 
     class Meta:
         fields = ('email', 'password1', 'password2')

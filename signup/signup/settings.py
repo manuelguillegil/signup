@@ -78,11 +78,6 @@ WSGI_APPLICATION = 'signup.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'signup_pruba_db',
-        'USER': 'admin_software',
-        'PASSWORD': 'qwerqwer',
-        'HOST': 'localhost',
-        'PORT': '',
     }
 }
 os.path.join(BASE_DIR, 'templates')
