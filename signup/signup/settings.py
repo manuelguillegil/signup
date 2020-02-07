@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'bj$q9fc2b$s$2m+r&_e-wrf63_z*wn89$=d69$h)39l5c)v0@$'
+SECRET_KEY = 'bc@_x9st*pv*en6dtqz*d77aw$4y_m!22-9+s__9uo&m0lb3%_'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -54,7 +54,9 @@ ROOT_URLCONF = 'signup.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates')
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -75,11 +77,15 @@ WSGI_APPLICATION = 'signup.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'signup_pruba_db',
+        'USER': 'admin_software',
+        'PASSWORD': 'qwerqwer',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
-
+os.path.join(BASE_DIR, 'templates')
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators

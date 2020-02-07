@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block body %}
+  <div class="container d-flex">
+    <h1 class="text-center logo my-4">
+      <a href="{% url 'signup' %}">Registro de Usuario</a>
+    </h1>
+    <div class="row justify-content-center" style="margin-left: 25%">
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-body">
+            <form method="post" action="/registrarUsuario/" class="justify-content-center">
+              {% csrf_token %}
+              {{ form }}
+            <button type="submit" class="btn btn-primary btn-block">Registrar Usuario</button>
+            </form>
+          </div>
+          <div class="card-footer text-muted text-center">
+            Ya tienes Usuario? <a href="#">Iniciar sesión</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

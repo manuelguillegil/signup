@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block body %}
+  <div class="container d-flex">
+    <h1 class="text-center logo my-4">
+      <a href="{% url 'signup' %}">Registro de Usuario</a>
+    </h1>
+    <h1 class="text-center logo my-4">
+        <a href="{% url 'login' %}">Ingresar Usuario</a>
+      </h1>
+  </div>
+{% endblock %}
