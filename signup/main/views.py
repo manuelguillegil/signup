@@ -17,23 +17,38 @@ def login(request):
 def thanks(request):
     return render(request, 'thanks.html', {'user': request})
 
-def registrarUsuario(request):
+def signupPost(request):
     form = RegistrarUsuarioForm(request.POST)
     if form.is_valid():
         email = form.cleaned_data['email']
         password1 = form.cleaned_data['password1']
         password2 = form.cleaned_data['password2']
+        if (registrarUsuario(email, password)):
+            mensaje = 'el form es validoooo'
+        else:
+            mensaje = 'el form no es valido'
         
     mensaje = ''
     return render(request, 'thanks.html', {'mensaje': mensaje})
 
-def ingresarUsuario(request):
+def registrarUsuario(email, password1, password2):
+    return True
+
+def loginPost(request):
+    mensaje = ''
     form = IngresarUsuarioForm(request.POST)
     if form.is_valid():
         email = form.cleaned_data['email']
         password = form.cleaned_data['password1']
-        if password == '':
-            return False
+        if (ingresarUsuario(email, password)):
+            mensaje = 'el form es validoooo'
+        else:
+            mensaje = 'el form no es valido'
+        
 
-    mensaje = ''
     return render(request, 'thanks.html', {'mensaje': mensaje})
+
+def ingresarUsuario(email, password1):
+    if (email == '' or password1 == ''):
+        return False
+    return True
