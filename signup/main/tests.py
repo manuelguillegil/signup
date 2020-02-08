@@ -20,6 +20,18 @@ class Seguridad(TestCase):
         self.assertEquals(response.status_code, 200)
         self.assertEquals(ingresarUsuario(data['email'], data['password1']), False)
 
+    ## Caso de Prueba Frontera
+    def test_registrar_usuario_campos_vacios(self):
+        url = 'http://127.0.0.1:8000/ingresarUsuario/'
+        data = {
+            'email': '',
+            'password1': '',
+            'password2': ''
+        }
+        response = self.client.post(url, data)
+        self.assertEquals(response.status_code, 200)
+        self.assertEquals(registrarUsuario(data['email'], data['password1'], data['password2']), False)
+
     ## Caso de Prueba Malicia
     def test_igresar_usuario_que_no_existe(self):
         url = 'http://127.0.0.1:8000/ingresarUsuario/'
@@ -41,7 +53,7 @@ class Seguridad(TestCase):
         response = self.client.post(url, data)
         self.assertEquals(response.status_code, 200)
 
-        user = User_Information(id = 999, email = 'usuario@gmail.com', password = 'qwerqwer')
+        user = User_Information(email = 'usuario@gmail.com', password = 'qwerqwer')
         user.save()
         self.assertEquals(ingresarUsuario(data['email'], 'contraseñaInvalida'), False)
 
