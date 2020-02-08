@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from main.forms import RegistrarUsuarioForm, IngresarUsuarioForm
+from main.models import User_Information
 
 # Create your views here.
 def index(request):
@@ -25,6 +26,9 @@ def signupPost(request):
         password2 = form.cleaned_data['password2']
         if (registrarUsuario(email, password)):
             mensaje = 'el form es validoooo'
+            if not User_Information.objects.filter(email=email).exists():
+                user = User_information(email = email, password = password1)
+                user.save()
         else:
             mensaje = 'el form no es valido'
         
