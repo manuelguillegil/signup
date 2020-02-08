@@ -38,7 +38,7 @@ def signupPost(request):
 
 def registrarUsuario(email, password1, password2):
     if not User_Information.objects.filter(email=email).exists():
-        if (email == '' or password1 == '' or password2 == ''):
+        if ((email == '' or password1 == '' or password2 == '') or (password1 != password2)):
             return False
         return True
     else:
