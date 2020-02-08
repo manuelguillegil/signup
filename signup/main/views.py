@@ -27,7 +27,7 @@ def signupPost(request):
         if (registrarUsuario(email, password)):
             mensaje = 'el form es validoooo'
             if not User_Information.objects.filter(email=email).exists():
-                user = User_information(email = email, password = password1)
+                user = User_Information(email = email, password = password1)
                 user.save()
         else:
             mensaje = 'el form no es valido'
@@ -36,7 +36,13 @@ def signupPost(request):
     return render(request, 'thanks.html', {'mensaje': mensaje})
 
 def registrarUsuario(email, password1, password2):
-    return True
+    if not User_Information.objects.filter(email=email).exists():
+        user = User_Information.objects.get(email=email)
+        if (email == '' or password1 == '' or password2 == ''):
+            return False
+        return True
+    else:
+        return False
 
 def loginPost(request):
     mensaje = ''
@@ -45,14 +51,20 @@ def loginPost(request):
         email = form.cleaned_data['email']
         password = form.cleaned_data['password1']
         if (ingresarUsuario(email, password)):
-            mensaje = 'el form es validoooo'
+            mensaje = 'Usuario aceptado'
         else:
-            mensaje = 'el form no es valido'
+            mensaje = 'Usuario inválido'
         
 
     return render(request, 'thanks.html', {'mensaje': mensaje})
 
 def ingresarUsuario(email, password1):
     if (email == '' or password1 == ''):
+            return False
+    if (User_Information.objects.filter(email=email).exists()):
+        user = User_Information.objects.get(email=email)
+        if (user.password != password1):
+            return False
+        return True
+    else:
         return False
-    return True
