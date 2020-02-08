@@ -51,8 +51,9 @@ def loginPost(request):
         email = form.cleaned_data['email']
         password = form.cleaned_data['password1']
         if (ingresarUsuario(email, password)):
+            user = User_Information.objects.get(email=email)
             mensaje = 'Usuario aceptado'
-            if (user.password != password1):
+            if (user.password != password):
                 mensaje = 'Clave inválida'
         else:
             mensaje = 'Usuario inválido'
