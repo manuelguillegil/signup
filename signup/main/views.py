@@ -19,12 +19,13 @@ def thanks(request):
     return render(request, 'thanks.html', {'user': request})
 
 def signupPost(request):
+    mensaje = 'El submit del form no es válido'
     form = RegistrarUsuarioForm(request.POST)
     if form.is_valid():
         email = form.cleaned_data['email']
         password1 = form.cleaned_data['password1']
         password2 = form.cleaned_data['password2']
-        if (registrarUsuario(email, password)):
+        if (registrarUsuario(email, password1, password2)):
             mensaje = 'el form es validoooo'
             if not User_Information.objects.filter(email=email).exists():
                 user = User_Information(email = email, password = password1)
@@ -37,7 +38,6 @@ def signupPost(request):
 
 def registrarUsuario(email, password1, password2):
     if not User_Information.objects.filter(email=email).exists():
-        user = User_Information.objects.get(email=email)
         if (email == '' or password1 == '' or password2 == ''):
             return False
         return True
@@ -45,13 +45,15 @@ def registrarUsuario(email, password1, password2):
         return False
 
 def loginPost(request):
-    mensaje = ''
+    mensaje = 'El submit del form no es válido'
     form = IngresarUsuarioForm(request.POST)
     if form.is_valid():
         email = form.cleaned_data['email']
         password = form.cleaned_data['password1']
         if (ingresarUsuario(email, password)):
             mensaje = 'Usuario aceptado'
+            if (user.password != password1):
+                mensaje = 'Clave inválida'
         else:
             mensaje = 'Usuario inválido'
         
