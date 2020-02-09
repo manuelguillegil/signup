@@ -56,18 +56,6 @@ class Seguridad(TestCase):
         response = self.client.post(url, data)
         self.assertEquals(response.status_code, 200)
         self.assertEquals(registrarUsuario(data['email'], data['password1'],data['password2']), False)
-    
-    ## Caso de Prueba Maliciosa
-    def test_registrar_usuario_sin_1punto_email(self):
-        url = 'http://127.0.0.1:8000/registrarUsuario/'
-        data = {
-            'email': 'correo@asdasd.',
-            'password1': '12345678abC',
-            'password2': '12345678abC'
-        }
-        response = self.client.post(url, data)
-        self.assertEquals(response.status_code, 200)
-        self.assertEquals(registrarUsuario(data['email'], data['password1'],data['password2']), False)
 
     ## Caso de Prueba Maliciosa
     def test_registrar_usuario_dominioinvalido_email(self):
@@ -120,7 +108,7 @@ class Seguridad(TestCase):
     def test_registrar_usuario_min_tamano_password(self):
         url = 'http://127.0.0.1:8000/registrarUsuario/'
         data = {
-            'email': 'correo@bien.com.',
+            'email': 'correo@bien.com',
             'password1': 'aZb4567',
             'password2': 'aZb4567'
         }
@@ -131,7 +119,7 @@ class Seguridad(TestCase):
     def test_registrar_usuario_max_tamano_password(self):
         url = 'http://127.0.0.1:8000/registrarUsuario/'
         data = {
-            'email': 'correo@bien.com.',
+            'email': 'correo@bien.com',
             'password1': 'aZb45678901234567',
             'password2': 'aZb45678901234567'
         }
@@ -143,7 +131,7 @@ class Seguridad(TestCase):
     def test_registrar_usuario_sin_letras_password(self):
         url = 'http://127.0.0.1:8000/registrarUsuario/'
         data = {
-            'email': 'correo@bien.com.',
+            'email': 'correo@bien.com',
             'password1': '12345678',
             'password2': '12345678'
         }
@@ -155,7 +143,7 @@ class Seguridad(TestCase):
     def test_registrar_usuario_con_una_letra_password(self):
         url = 'http://127.0.0.1:8000/registrarUsuario/'
         data = {
-            'email': 'correo@bien.com.',
+            'email': 'correo@bien.com',
             'password1': 'a12345678',
             'password2': 'a12345678'
         }
@@ -167,7 +155,7 @@ class Seguridad(TestCase):
     def test_registrar_usuario_con_dos_letras_password(self):
         url = 'http://127.0.0.1:8000/registrarUsuario/'
         data = {
-            'email': 'correo@bien.com.',
+            'email': 'correo@bien.com',
             'password1': 'aZ12345678',
             'password2': 'aZ12345678'
         }
@@ -179,7 +167,7 @@ class Seguridad(TestCase):
     def test_registrar_usuario_sin_minus_password(self):
         url = 'http://127.0.0.1:8000/registrarUsuario/'
         data = {
-            'email': 'correo@bien.com.',
+            'email': 'correo@bien.com',
             'password1': 'ABC12345678',
             'password2': 'ABC12345678'
         }
@@ -191,7 +179,7 @@ class Seguridad(TestCase):
     def test_registrar_usuario_sin_mayus_password(self):
         url = 'http://127.0.0.1:8000/registrarUsuario/'
         data = {
-            'email': 'correo@bien.com.',
+            'email': 'correo@bien.com',
             'password1': 'abc12345678',
             'password2': 'abc12345678'
         }
@@ -203,7 +191,7 @@ class Seguridad(TestCase):
     def test_registrar_usuario_sin_minus_password(self):
         url = 'http://127.0.0.1:8000/registrarUsuario/'
         data = {
-            'email': 'correo@bien.com.',
+            'email': 'correo@bien.com',
             'password1': 'ABC12345678',
             'password2': 'ABC12345678'
         }
@@ -215,7 +203,7 @@ class Seguridad(TestCase):
     def test_registrar_usuario_sin_numeros_password(self):
         url = 'http://127.0.0.1:8000/registrarUsuario/'
         data = {
-            'email': 'correo@bien.com.',
+            'email': 'correo@bien.com',
             'password1': 'ABCasdcv',
             'password2': 'ABCasdcv'
         }
@@ -227,7 +215,7 @@ class Seguridad(TestCase):
     def test_registrar_usuario_caracter_invalido_password(self):
         url = 'http://127.0.0.1:8000/registrarUsuario/'
         data = {
-            'email': 'correo@bien.com.',
+            'email': 'correo@bien.com',
             'password1': 'Aac.12345678',
             'password2': 'Aac.12345678'
         }
