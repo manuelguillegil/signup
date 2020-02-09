@@ -252,7 +252,7 @@ class Seguridad(TestCase):
         url = 'http://127.0.0.1:8000/ingresarUsuario/'
         data = {
             'email': 'emailQueNoExiste@noExiste.com',
-            'password1': 'usuarioQueNoExiste'
+            'password1': 'usuarioQueNoExiste12'
         }
         response = self.client.post(url, data)
         self.assertEquals(response.status_code, 200)
@@ -262,13 +262,26 @@ class Seguridad(TestCase):
     def test_registrar_usuario_con_contraseñas_que_no_coinciden(self):
         url = 'http://127.0.0.1:8000/registrarUsuario/'
         data = {
-            'email': 'usuario@gmail.com',
+            'email': 'manuel@gmail.com',
             'password1': 'qwerqwer',
             'password2': '1234'
         }
         response = self.client.post(url, data)
         self.assertEquals(response.status_code, 200)
         self.assertEquals(registrarUsuario(data['email'], data['password1'], data['password2']), False)
+
+    ## Caso de Prueba Malicia
+    def test_registrar_usuario_exito(self):
+        print("Hola pruebaa")
+        url = 'http://127.0.0.1:8000/registrarUsuario/'
+        data = {
+            'email': 'manuel4@gmail.com',
+            'password1': 'Hola1234',
+            'password2': 'Hola1234'
+        }
+        response = self.client.post(url, data)
+        self.assertEquals(response.status_code, 200)
+        self.assertEquals(registrarUsuario('manuel@gmail.com', 'Hola1234', 'Hola1234'), True)
 
 if __name__ == '__main__':
     unittest.main(warnings='ignore')
