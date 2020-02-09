@@ -283,5 +283,18 @@ class Seguridad(TestCase):
         self.assertEquals(response.status_code, 200)
         self.assertEquals(registrarUsuario('manuel@gmail.com', 'Hola1234', 'Hola1234'), True)
 
+    ## Caso de Prueba Malicia
+    def test_igresar_usuario_que_exito(self):
+        url = 'http://127.0.0.1:8000/ingresarUsuario/'
+        data = {
+            'email': 'manuel@gmail.com',
+            'password1': 'Hola1234'
+        }
+        user = User_Information(email='manuel@gmail.com', password='Hola1234')
+        user.save()
+        response = self.client.post(url, data)
+        self.assertEquals(response.status_code, 200)
+        self.assertEquals(ingresarUsuario(data['email'], data['password1']), True)
+
 if __name__ == '__main__':
     unittest.main(warnings='ignore')
