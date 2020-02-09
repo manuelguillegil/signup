@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from main.forms import RegistrarUsuarioForm, IngresarUsuarioForm
 from main.models import User_Information
+import re
 
 # Create your views here.
 def index(request):
@@ -26,10 +27,8 @@ def signupPost(request):
         password1 = form.cleaned_data['password1']
         password2 = form.cleaned_data['password2']
         if (registrarUsuario(email, password1, password2)):
-            mensaje = 'el form es validoooo'
-            if not User_Information.objects.filter(email=email).exists():
-                user = User_Information(email = email, password = password1)
-                user.save()
+            user = User_Information(email = email, password = password1)
+            user.save()
         else:
             mensaje = 'el form no es valido'
         
@@ -38,10 +37,23 @@ def signupPost(request):
 
 def registrarUsuario(email, password1, password2):
     if not User_Information.objects.filter(email=email).exists():
-        if ((email == '' or password1 == '' or password2 == '') or (password1 != password2)):
+        correo,mensaje = verificarEmail(email)
+        if (correo):
+            if password1 == password2:
+                #password, mensaje = verificarPassword(password1)
+                #if (password):
+                return True
+                else:
+                    print(mensaje)
+                    return False
+            else:
+                print('Claves no coinciden')
+                return False
+        else:
+            print(mensaje)
             return False
-        return True
     else:
+        print('Correo ya registrado')
         return False
 
 def loginPost(request):
@@ -71,3 +83,17 @@ def ingresarUsuario(email, password1):
         return True
     else:
         return False
+
+def verificarEmail(email):
+    if re.match('\S*@\S*',email):
+        if re.match('\S+@\S+',email):
+            if re.match('\w+[.|\w]\w+@\w+[.]\w+[.|\w+]\w+', email)
+                return True,''
+            else:
+                return False, 'Caracteres invalidos'
+        else:
+            return False,'Faltan campos antes o despues de @'
+    else:
+        return False,'Problema con @'
+    
+#def verificarPassword(password):
