@@ -26,8 +26,8 @@ class Seguridad(TestCase):
         url = 'http://127.0.0.1:8000/registrarUsuario/'
         data = {
             'email': 'correo',
-            'password1': '12345678',
-            'password2': '12345678'
+            'password1': '12345678abC',
+            'password2': '12345678abC'
         }
         response = self.client.post(url, data)
         self.assertEquals(response.status_code, 200)
@@ -38,8 +38,8 @@ class Seguridad(TestCase):
         url = 'http://127.0.0.1:8000/registrarUsuario/'
         data = {
             'email': 'correo@',
-            'password1': '12345678',
-            'password2': '12345678'
+            'password1': '12345678abC',
+            'password2': '12345678abC'
         }
         response = self.client.post(url, data)
         self.assertEquals(response.status_code, 200)
@@ -50,8 +50,8 @@ class Seguridad(TestCase):
         url = 'http://127.0.0.1:8000/registrarUsuario/'
         data = {
             'email': 'correo@asdasd',
-            'password1': '12345678',
-            'password2': '12345678'
+            'password1': '12345678abC',
+            'password2': '12345678abC'
         }
         response = self.client.post(url, data)
         self.assertEquals(response.status_code, 200)
@@ -62,8 +62,8 @@ class Seguridad(TestCase):
         url = 'http://127.0.0.1:8000/registrarUsuario/'
         data = {
             'email': 'correo@asdasd.',
-            'password1': '12345678',
-            'password2': '12345678'
+            'password1': '12345678abC',
+            'password2': '12345678abC'
         }
         response = self.client.post(url, data)
         self.assertEquals(response.status_code, 200)
@@ -74,8 +74,8 @@ class Seguridad(TestCase):
         url = 'http://127.0.0.1:8000/registrarUsuario/'
         data = {
             'email': 'correo@asdasd.ad',
-            'password1': '12345678',
-            'password2': '12345678'
+            'password1': '12345678abC',
+            'password2': '12345678abC'
         }
         response = self.client.post(url, data)
         self.assertEquals(response.status_code, 200)
@@ -86,8 +86,8 @@ class Seguridad(TestCase):
         url = 'http://127.0.0.1:8000/registrarUsuario/'
         data = {
             'email': 'correo@asdasd.com.',
-            'password1': '12345678',
-            'password2': '12345678'
+            'password1': '12345678abC',
+            'password2': '12345678abC'
         }
         response = self.client.post(url, data)
         self.assertEquals(response.status_code, 200)
@@ -98,8 +98,8 @@ class Seguridad(TestCase):
         url = 'http://127.0.0.1:8000/registrarUsuario/'
         data = {
             'email': 'corr"eo@asdasd.com.ve',
-            'password1': '12345678',
-            'password2': '12345678'
+            'password1': '12345678abC',
+            'password2': '12345678abC'
         }
         response = self.client.post(url, data)
         self.assertEquals(response.status_code, 200)
@@ -110,8 +110,8 @@ class Seguridad(TestCase):
         url = 'http://127.0.0.1:8000/registrarUsuario/'
         data = {
             'email': 'correo@asdasd.',
-            'password1': '12345678',
-            'password2': '12345678'
+            'password1': '12345678abC',
+            'password2': '12345678abC'
         }
         response = self.client.post(url, data)
         self.assertEquals(response.status_code, 200)
