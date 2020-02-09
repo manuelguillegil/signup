@@ -5,6 +5,7 @@ from django.urls import resolve
 from .views import registrarUsuario, ingresarUsuario
 from .forms import IngresarUsuarioForm, RegistrarUsuarioForm
 from .models import User_Information
+import re
 
 # Create your tests here.
 

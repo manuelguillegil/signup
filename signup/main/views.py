@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from main.forms import RegistrarUsuarioForm, IngresarUsuarioForm
 from main.models import User_Information
+import re
 
 # Create your views here.
 def index(request):
